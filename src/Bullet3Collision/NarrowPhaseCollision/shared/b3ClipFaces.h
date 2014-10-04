@@ -108,7 +108,7 @@ __kernel void   clipFacesAndFindContactsKernel(    __global const b3Float4* sepa
             
                 
                 int closestFaceA = clippingFaces[pairIndex].x;
-                int closestFaceB = clippingFaces[pairIndex].y;
+                //int closestFaceB = clippingFaces[pairIndex].y;
                 int numVertsInA = clippingFaces[pairIndex].z;
                 int numVertsInB = clippingFaces[pairIndex].w;
                 
@@ -116,11 +116,7 @@ __kernel void   clipFacesAndFindContactsKernel(    __global const b3Float4* sepa
                 
                 if (closestFaceA>=0)
                 {
-                    
-                    
-                    
                     // clip polygon to back of planes of all faces of hull A that are adjacent to witness face
-                    
                     for(int e0=0;e0<numVertsInA;e0++)
                     {
                         const b3Float4 aw = worldVertsA1[pairIndex*capacityWorldVertsB2+e0];
@@ -137,7 +133,6 @@ __kernel void   clipFacesAndFindContactsKernel(    __global const b3Float4* sepa
                         pVtxOut = pVtxIn;
                         pVtxIn = tmp;
                         numVertsInB = numVertsOut;
-                        numVertsOut = 0;
                     }
                     
                     b3Float4 planeNormalWS = worldNormalsA1[pairIndex];
